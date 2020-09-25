@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:mood_tracker/models/ActivityList.dart';
 import 'package:mood_tracker/models/Emotion.dart';
-import 'package:mood_tracker/models/EmotionList.dart';
+import 'package:mood_tracker/providers/EmotionList.dart';
 import 'package:mood_tracker/models/Entry.dart';
-import 'package:mood_tracker/pages/pickActivities.dart';
 import 'package:provider/provider.dart';
+
+import 'local_widgets/continueButton.dart';
 
 class PickEmotions extends StatefulWidget {
   final Entry entry;
@@ -29,32 +29,18 @@ class _PickEmotionsState extends State<PickEmotions> {
               style: TextStyle(fontSize: 36),
               textAlign: TextAlign.center,
             )),
-        Expanded(
-            child: Consumer<EmotionList>(
-                builder: (context, emotionList, child) => ListView(
-                    children: emotionList.emotions
-                        .map(buildEmotionCheckBoxListTile)
-                        .toList()))),
-        Container(
-          padding: EdgeInsets.symmetric(vertical: verticalPadding),
-          child: RaisedButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => MultiProvider(
-                                providers: [
-                                  ChangeNotifierProvider(
-                                      create: (context) => ActivityList()),
-                                ],
-                                child: PickActivites(
-                                  entry: widget.entry,
-                                ))));
-              },
-              child: const Text('Continue', style: TextStyle(fontSize: 20))),
-        ),
+        Expanded(child: buildEmotionPicker()),
+        ContinueButton(verticalPadding: verticalPadding, entry: widget.entry),
       ])),
     );
+  }
+
+  Consumer<EmotionList> buildEmotionPicker() {
+    return Consumer<EmotionList>(
+        builder: (context, emotionList, child) => ListView(
+            children: emotionList.emotions
+                .map(buildEmotionCheckBoxListTile)
+                .toList()));
   }
 
   Widget buildEmotionCheckBoxListTile(Emotion emotion) => CheckboxListTile(

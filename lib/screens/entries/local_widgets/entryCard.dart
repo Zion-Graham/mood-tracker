@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mood_tracker/models/Entry.dart';
-import 'package:mood_tracker/models/MoodImage.dart';
+import 'package:mood_tracker/models/Moods.dart';
 
 class EntryCard extends StatelessWidget {
   const EntryCard({Key key, this.entry}) : super(key: key);
@@ -34,7 +34,7 @@ Container moodAndDate(mood, date) => Container(
             height: 80,
             margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
             child: Image.asset(
-              moodImages.firstWhere((element) => element.mood == mood).image,
+              moods[mood],
             )),
         Container(
           child: Column(
@@ -42,7 +42,7 @@ Container moodAndDate(mood, date) => Container(
               children: <Widget>[
                 Container(
                     child: Text(
-                  // 'THURSDAY, MAY 21, 3:00 PM',
+                  // TODO: Format date like -> 'THURSDAY, MAY 21, 3:00 PM',
                   date.toString(),
                   style: TextStyle(
                     fontSize: 18,

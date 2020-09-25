@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'models/EntryList.dart';
-import 'pages/entries.dart';
+import 'providers/EntryList.dart';
+import 'screens/entries/entries.dart';
 
 void main() => runApp(MyApp());
 
