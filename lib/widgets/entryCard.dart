@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mood_tracker/models/Entry.dart';
+import 'package:mood_tracker/models/MoodImage.dart';
 
-class Entry extends StatelessWidget {
-  const Entry({Key key, this.mood, this.date}) : super(key: key);
-  final DateTime date;
-  final String mood;
+class EntryCard extends StatelessWidget {
+  const EntryCard({Key key, this.entry}) : super(key: key);
+  final Entry entry;
 
   @override
   Widget build(BuildContext context) => Card(
@@ -11,12 +12,13 @@ class Entry extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(10),
         child: Column(children: <Widget>[
-          moodAndDate(mood, date),
+          moodAndDate(entry.mood, entry.created),
           Container(color: Colors.grey, height: 1),
-          chipRow('Emotions', ["Happy", "Excited"], Colors.blue),
+          chipRow('Emotions', entry.emotions.map((e) => e.name).toList(),
+              Colors.blue),
           Container(color: Colors.grey, height: 1),
-          chipRow(
-              'Activities', ["Programming", "Eating", "Sleping"], Colors.orange)
+          chipRow('Activities', entry.activities.map((e) => e.name).toList(),
+              Colors.orange)
         ]),
       ));
 }
@@ -32,7 +34,7 @@ Container moodAndDate(mood, date) => Container(
             height: 80,
             margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
             child: Image.asset(
-              'assets/emojis/png/001-happy.png',
+              moodImages.firstWhere((element) => element.mood == mood).image,
             )),
         Container(
           child: Column(
@@ -40,15 +42,15 @@ Container moodAndDate(mood, date) => Container(
               children: <Widget>[
                 Container(
                     child: Text(
-                  date.toString(),
                   // 'THURSDAY, MAY 21, 3:00 PM',
+                  date.toString(),
                   style: TextStyle(
                     fontSize: 18,
                   ),
                 )),
                 Container(
                     child: Text(
-                  'Great',
+                  mood,
                   style: TextStyle(fontSize: 36),
                 )),
               ]),
