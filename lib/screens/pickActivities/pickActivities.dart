@@ -37,11 +37,18 @@ class _PickActivitesState extends State<PickActivites> {
   }
 
   Consumer<ActivityList> buildActivityPicker() {
+    final ScrollController scrollController = ScrollController();
     return Consumer<ActivityList>(
-        builder: (context, activityList, child) => ListView(
-            children: activityList.activities
-                .map(buildActivityCheckBoxListTile)
-                .toList()));
+        builder: (context, activityList, child) => Container(
+            margin: EdgeInsets.symmetric(horizontal: 30),
+            child: Scrollbar(
+                controller: scrollController,
+                isAlwaysShown: true,
+                child: ListView(
+                    controller: scrollController,
+                    children: activityList.activities
+                        .map(buildActivityCheckBoxListTile)
+                        .toList()))));
   }
 
   Widget buildActivityCheckBoxListTile(Activity activity) => CheckboxListTile(

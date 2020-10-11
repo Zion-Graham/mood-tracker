@@ -36,11 +36,16 @@ class _PickEmotionsState extends State<PickEmotions> {
   }
 
   Consumer<EmotionList> buildEmotionPicker() {
+    final ScrollController scrollController = ScrollController();
     return Consumer<EmotionList>(
-        builder: (context, emotionList, child) => ListView(
-            children: emotionList.emotions
-                .map(buildEmotionCheckBoxListTile)
-                .toList()));
+        builder: (context, emotionList, child) => Scrollbar(
+            controller: scrollController,
+            isAlwaysShown: true,
+            child: ListView(
+                controller: scrollController,
+                children: emotionList.emotions
+                    .map(buildEmotionCheckBoxListTile)
+                    .toList())));
   }
 
   Widget buildEmotionCheckBoxListTile(Emotion emotion) => CheckboxListTile(
