@@ -7,8 +7,8 @@ import 'package:provider/provider.dart';
 import 'local_widgets/continueButton.dart';
 
 class PickEmotions extends StatefulWidget {
-  final Entry entry;
   const PickEmotions({Key key, this.entry}) : super(key: key);
+  final Entry entry;
 
   @override
   _PickEmotionsState createState() => _PickEmotionsState();

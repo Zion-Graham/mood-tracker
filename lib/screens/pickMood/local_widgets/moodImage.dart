@@ -21,11 +21,9 @@ class MoodImage extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => ChangeNotifierProvider(
-                      create: (context) => EmotionList(),
-                      child: PickEmotions(
+                  builder: (context) => PickEmotions(
                         entry: entry,
-                      ))));
+                      )));
         },
         child: Image.asset(
           moods[mood],

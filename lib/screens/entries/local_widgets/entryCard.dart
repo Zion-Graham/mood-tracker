@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mood_tracker/models/Entry.dart';
 import 'package:mood_tracker/models/Moods.dart';
+import 'package:mood_tracker/screens/pickMood/pickMood.dart';
 
 class EntryCard extends StatelessWidget {
   const EntryCard({Key key, this.entry}) : super(key: key);
@@ -9,18 +10,21 @@ class EntryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Card(
       elevation: 4,
-      child: Container(
-        padding: EdgeInsets.all(10),
-        child: Column(children: <Widget>[
-          moodAndDate(entry.mood, entry.created),
-          Container(color: Colors.grey, height: 1),
-          chipRow('Emotions', entry.emotions.map((e) => e.name).toList(),
-              Colors.blue),
-          Container(color: Colors.grey, height: 1),
-          chipRow('Activities', entry.activities.map((e) => e.name).toList(),
-              Colors.orange)
-        ]),
-      ));
+      child: InkWell(
+          onTap: () => Navigator.push(context,
+              MaterialPageRoute(builder: (context) => PickMood(entry: entry))),
+          child: Container(
+            padding: EdgeInsets.all(10),
+            child: Column(children: <Widget>[
+              moodAndDate(entry.mood, entry.created),
+              Container(color: Colors.grey, height: 1),
+              chipRow('Emotions', entry.emotions.map((e) => e.name).toList(),
+                  Colors.blue),
+              Container(color: Colors.grey, height: 1),
+              chipRow('Activities',
+                  entry.activities.map((e) => e.name).toList(), Colors.orange)
+            ]),
+          )));
 }
 
 // Helper Methods

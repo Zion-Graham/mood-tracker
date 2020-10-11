@@ -4,14 +4,18 @@ import 'package:mood_tracker/models/Entry.dart';
 import 'local_widgets/moodPicker.dart';
 
 class PickMood extends StatefulWidget {
+  final Entry entry;
+
+  const PickMood({Key key, this.entry}) : super(key: key);
+
   @override
   _PickMoodState createState() => _PickMoodState();
 }
 
 class _PickMoodState extends State<PickMood> {
-  Entry entry = Entry('', '', [], []);
   @override
   Widget build(BuildContext context) {
+    Entry entry = widget.entry ?? Entry('', '', [], []);
     return Scaffold(
       appBar: AppBar(title: Text('App')),
       body: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [

@@ -23,11 +23,9 @@ class ContinueButton extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => ChangeNotifierProvider(
-                        create: (context) => ActivityList(),
-                        child: PickActivites(
+                    builder: (context) => PickActivites(
                           entry: entry,
-                        ))));
+                        )));
           },
           child: const Text('Continue', style: TextStyle(fontSize: 20))),
     );
