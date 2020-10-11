@@ -3,7 +3,7 @@ import 'package:uuid/uuid.dart';
 import 'Activity.dart';
 import 'Emotion.dart';
 
-class Entry {
+class Entry implements Comparable {
   String id = Uuid().v4();
   String description;
   String mood;
@@ -17,4 +17,9 @@ class Entry {
     this.emotions,
     this.activities,
   );
+
+  @override
+  int compareTo(other) {
+    return this.created.compareTo(other.created);
+  }
 }
