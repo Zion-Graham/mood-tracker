@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mood_tracker/providers/EmotionList.dart';
 import 'package:mood_tracker/models/Entry.dart';
 import 'package:mood_tracker/models/Moods.dart';
 import 'package:mood_tracker/screens/pickEmotions/pickEmotions.dart';
-import 'package:provider/provider.dart';
 
 class MoodImage extends StatelessWidget {
   const MoodImage({Key key, @required this.entry, @required this.mood})

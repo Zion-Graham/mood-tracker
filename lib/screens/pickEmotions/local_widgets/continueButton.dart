@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mood_tracker/providers/ActivityList.dart';
 import 'package:mood_tracker/models/Entry.dart';
 import 'package:mood_tracker/screens/pickActivities/pickActivities.dart';
-import 'package:provider/provider.dart';
 
 class ContinueButton extends StatelessWidget {
   const ContinueButton({
