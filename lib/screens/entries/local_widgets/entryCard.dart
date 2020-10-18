@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:mood_tracker/models/Entry.dart';
 import 'package:mood_tracker/models/Moods.dart';
 import 'package:mood_tracker/screens/pickMood/pickMood.dart';
@@ -28,7 +29,7 @@ class EntryCard extends StatelessWidget {
 }
 
 // Helper Methods
-Container moodAndDate(mood, date) => Container(
+Container moodAndDate(String mood, DateTime date) => Container(
     margin: EdgeInsets.only(bottom: 5),
     child: Row(
       mainAxisSize: MainAxisSize.max,
@@ -46,8 +47,7 @@ Container moodAndDate(mood, date) => Container(
               children: <Widget>[
                 Container(
                     child: Text(
-                  // TODO: Format date like -> 'THURSDAY, MAY 21, 3:00 PM',
-                  date.toString(),
+                  "${DateFormat.yMMMMd().add_jm().format(date)}",
                   style: TextStyle(
                     fontSize: 18,
                   ),
