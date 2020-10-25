@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:mood_tracker/models/Emotion.dart';
 import 'package:mood_tracker/providers/ActivityList.dart';
 import 'package:mood_tracker/providers/EmotionList.dart';
 import 'package:provider/provider.dart';
+import 'models/Activity.dart';
 import 'models/Entry.dart';
 import 'providers/EntryList.dart';
 import 'screens/entries/entries.dart';
@@ -12,6 +14,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final appDocumentDir = await path_provider.getApplicationDocumentsDirectory();
   Hive.registerAdapter(EntryAdapter());
+  Hive.registerAdapter(EmotionAdapter());
+  Hive.registerAdapter(ActivityAdapter());
   Hive.init(appDocumentDir.path);
   runApp(MyApp());
 }
