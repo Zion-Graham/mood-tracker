@@ -1,14 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:mood_tracker/providers/ActivityList.dart';
 import 'package:mood_tracker/providers/EmotionList.dart';
 import 'package:provider/provider.dart';
+import 'models/Entry.dart';
 import 'providers/EntryList.dart';
 import 'screens/entries/entries.dart';
+import 'package:path_provider/path_provider.dart' as path_provider;
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final appDocumentDir = await path_provider.getApplicationDocumentsDirectory();
+  Hive.registerAdapter(EntryAdapter());
+  Hive.init(appDocumentDir.path);
+  runApp(MyApp());
+}
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   // This widget is the root of your application.
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -28,6 +42,23 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
-            home: EntriesPage()));
+            home: FutureBuilder(
+                future: Hive.openBox<Entry>("entries"),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    if (snapshot.hasError)
+                      return Text(snapshot.error.toString());
+                    else
+                      return EntriesPage();
+                  } else {
+                    return Scaffold();
+                  }
+                })));
+  }
+
+  @override
+  void dispose() {
+    Hive.close();
+    super.dispose();
   }
 }
