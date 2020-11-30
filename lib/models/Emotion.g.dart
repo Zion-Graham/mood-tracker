@@ -18,6 +18,7 @@ class EmotionAdapter extends TypeAdapter<Emotion> {
     };
     return Emotion(
       fields[1] as String,
+      fields[0] as String,
     );
   }
 

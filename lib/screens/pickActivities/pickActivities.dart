@@ -53,12 +53,13 @@ class _PickActivitesState extends State<PickActivites> {
 
   Widget buildActivityCheckBoxListTile(Activity activity) => CheckboxListTile(
         title: Text(activity.name),
-        onChanged: (bool checked) => setState(() => {
-              if (checked)
-                {widget.entry.activities.add(activity)}
-              else
-                {widget.entry.activities.remove(activity)}
-            }),
-        value: widget.entry.activities.contains(activity),
+        onChanged: (bool checked) => setState(() {
+          if (checked) {
+            widget.entry.activities.add(activity);
+          } else {
+            widget.entry.activities.remove(activity);
+          }
+        }),
+        value: widget.entry.activities.any((a) => a.id == activity.id),
       );
 }

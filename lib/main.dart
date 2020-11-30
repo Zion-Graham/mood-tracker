@@ -47,7 +47,11 @@ class _MyAppState extends State<MyApp> {
               primarySwatch: Colors.blue,
             ),
             home: FutureBuilder(
-                future: Hive.openBox<Entry>("entries"),
+                future: Future.wait([
+                  Hive.openBox<Activity>("activities"),
+                  Hive.openBox<Emotion>("emotions"),
+                  Hive.openBox<Entry>("entries")
+                ]),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.hasError)

@@ -18,6 +18,7 @@ class ActivityAdapter extends TypeAdapter<Activity> {
     };
     return Activity(
       fields[1] as String,
+      fields[0] as String,
     );
   }
 

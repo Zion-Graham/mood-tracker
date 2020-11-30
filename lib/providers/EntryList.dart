@@ -6,7 +6,7 @@ import 'package:mood_tracker/models/Entry.dart';
 class EntryList extends ChangeNotifier {
   final _entries = Hive.box<Entry>("entries");
 
-  SplayTreeSet<Entry> get entries => SplayTreeSet.from(_entries.toMap().values);
+  SplayTreeSet<Entry> get entries => SplayTreeSet.from(_entries.values);
 
   void add(Entry entry) {
     _entries.put(entry.id, entry);

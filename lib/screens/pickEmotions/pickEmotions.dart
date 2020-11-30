@@ -49,13 +49,13 @@ class _PickEmotionsState extends State<PickEmotions> {
   }
 
   Widget buildEmotionCheckBoxListTile(Emotion emotion) => CheckboxListTile(
-        title: Text(emotion.name),
-        onChanged: (bool checked) => setState(() => {
-              if (checked)
-                {widget.entry.emotions.add(emotion)}
-              else
-                {widget.entry.emotions.remove(emotion)}
-            }),
-        value: widget.entry.emotions.contains(emotion),
-      );
+      title: Text(emotion.name),
+      onChanged: (bool checked) => setState(() {
+            if (checked) {
+              widget.entry.emotions.add(emotion);
+            } else {
+              widget.entry.emotions.remove(emotion);
+            }
+          }),
+      value: widget.entry.emotions.any((e) => e.id == emotion.id));
 }
