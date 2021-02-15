@@ -54,7 +54,7 @@ class _PickEmotionsState extends State<PickEmotions> {
             if (checked) {
               widget.entry.emotions.add(emotion);
             } else {
-              widget.entry.emotions.remove(emotion);
+              widget.entry.emotions.removeWhere((e) => e.id == emotion.id);
             }
           }),
       value: widget.entry.emotions.any((e) => e.id == emotion.id));

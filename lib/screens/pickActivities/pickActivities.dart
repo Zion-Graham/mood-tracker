@@ -57,7 +57,7 @@ class _PickActivitesState extends State<PickActivites> {
           if (checked) {
             widget.entry.activities.add(activity);
           } else {
-            widget.entry.activities.remove(activity);
+            widget.entry.activities.removeWhere((a) => a.id == activity.id);
           }
         }),
         value: widget.entry.activities.any((a) => a.id == activity.id),
