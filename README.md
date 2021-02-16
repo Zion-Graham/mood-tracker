@@ -1,16 +1,22 @@
-# mood_tracker
+# Mood Tracker
 
-A new Flutter project.
+## Overview
 
-## Getting Started
+Android application used to track a person's mood and their associated emotions and activites.
 
-This project is a starting point for a Flutter application.
+<img src="./readme/mood_tracker_demo_v1.gif" width="250"/>
 
-A few resources to get you started if this is your first Flutter project:
+## Features
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- Log and keep track of your moods down to the minute
+- Tag what emotions and activites you were doing with a mood
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Tools Used
+
+- Flutter
+- Hive
+- Provider
+
+## Credits
+
+Icons made by Freepik from https://www.flaticon.com/packs/emojis-18?word=emoji
