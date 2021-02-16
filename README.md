@@ -2,7 +2,7 @@
 
 ## Overview
 
-Android application used to track a person's mood and their associated emotions and activites.
+Android application used to track a person's mood and their associated emotions and activities.
 
 <img src="./readme/mood_tracker_demo_v1.gif" width="250"/>
 
